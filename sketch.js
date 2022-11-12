@@ -1,8 +1,10 @@
 let time =0
 let wave =[]
+let myslider;
 
 function setup() {
   createCanvas(900, 600);
+  myslider = createSlider(1, 100,5,1)
 }
 
 function draw() {
@@ -17,7 +19,8 @@ function draw() {
 
   let x =0;
   let y=0 ;
-  for (let i =0;i<5;i++){
+  // loop slider times
+  for (let i =0;i<myslider.value();i++){
 
     // these function map to wiki oscillations
     // but you don't need the pi and the other multipliers
