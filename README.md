@@ -40,3 +40,7 @@ I got the same results simply by using a odd series 1 3 5 7 etc
 
 
 ```
+
+mathologer video
+
+https://youtu.be/qS4H6PEcCCA
