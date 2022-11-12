@@ -7,25 +7,47 @@ function setup() {
 
 function draw() {
   background(0);
-  translate(200,200);
-  let radius =100;
+  translate(200,300);
   stroke(0,255,0);
   noFill()
 
-  ellipse(0,0,radius*2);
+  
 
   // r*cos(angle)
-  let x = radius * cos(time);
-  let y = radius * sin(time);
-  wave.unshift(y); // add new points to beginning of array
 
-  line(0,0,x,y)
-  ellipse(x,y,8)
+  let x =0;
+  let y=0 ;
+  for (let i =0;i<5;i++){
 
-  // wave
-  translate(200,0);
-  // line to beginning of wave
-  line(x-200,y,0,wave[0]);
+    // these function map to wiki oscillations
+    // but you don't need the pi and the other multipliers
+    // you just need to change the n value
+    // n= i*2+1 is and odd series which makes the square wave
+    // n = i + 1 is odd and even and make a saw tooth like wave
+    // n= (i+1)*2  is and even series and and makes saw tooth
+    let prevx =x
+    let prevy =y
+    let n = i*2+1
+    let radius = 150/n //(100 * 4)/(n*PI)
+    //x = radius * (4* cos(n* time))/(n*PI);
+    //y = radius * (4* sin(n* time))/(n*PI);
+    // this makes the wave additive literally adding them while looping i times
+    x+= radius * cos(n* time)
+    y+= radius * sin(n* time)
+    
+    // draw light circle
+    stroke(0,255,0,100)
+    ellipse(prevx,prevy,radius*2)
+
+    // draw darker line
+    stroke(0,255,0,255)
+    line(prevx,prevy,x,y)
+    
+  }
+  wave.unshift(y); // add new points to beginning of array only the last one
+  
+  translate(200,0)
+  line(x-200,y,0,wave[0])
   beginShape();
   noFill();
   for (let i=0;i<wave.length;i++){
