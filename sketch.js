@@ -1,10 +1,14 @@
 let time =0
 let wave =[]
 let myslider;
+let sel;
 
 function setup() {
   createCanvas(900, 600);
   myslider = createSlider(1, 50,5,1)
+  sel = createSelect()
+  sel.option('square')
+  sel.option('saw')
 }
 
 function draw() {
@@ -19,6 +23,8 @@ function draw() {
 
   let x =0;
   let y=0 ;
+  let n;
+  
   // loop slider times
   for (let i =0;i<myslider.value();i++){
 
@@ -30,7 +36,13 @@ function draw() {
     // n= (i+1)*2  is and even series and and makes saw tooth
     let prevx =x
     let prevy =y
-    let n = i*2+1
+    if (sel.value()== 'square'){
+       n = i*2+1
+
+    }else{
+      n= i+1
+    }
+    
     let radius = 150/n //(100 * 4)/(n*PI)
     //x = radius * (4* cos(n* time))/(n*PI);
     //y = radius * (4* sin(n* time))/(n*PI);
